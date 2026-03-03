@@ -8,7 +8,15 @@ let formData = {
 const form = document.querySelector('.feedback-form');
 
 const zip = localStorage.getItem(STOREGE_KEY);
-    const data = JSON.parse(zip) || {};
+    let data = {};
+
+if (zip) {
+    try {
+        data = JSON.parse(zip) || {};
+    } catch {
+        data = {};
+    }
+}
     form.elements.email.value = data.email || '';
     form.elements.message.value = data.message || '';
 
