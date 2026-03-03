@@ -7,14 +7,7 @@ let formData = {
 
 const form = document.querySelector('.feedback-form');
 
-form.addEventListener('input', e => {
-   formData[e.target.name] = e.target.value; 
-    const zip = JSON.stringify(formData);
-    localStorage.setItem(STOREGE_KEY, zip);
-});
-
-document.addEventListener('DOMContentLoaded', e => {
-    const zip = localStorage.getItem(STOREGE_KEY);
+const zip = localStorage.getItem(STOREGE_KEY);
     const data = JSON.parse(zip) || {};
     form.elements.email.value = data.email || '';
     form.elements.message.value = data.message || '';
@@ -23,6 +16,11 @@ document.addEventListener('DOMContentLoaded', e => {
         email: data.email || "",
         message: data.message || "",
     };
+
+form.addEventListener('input', e => {
+   formData[e.target.name] = e.target.value; 
+    const zip = JSON.stringify(formData);
+    localStorage.setItem(STOREGE_KEY, zip);
 });
 
 form.addEventListener('submit', e => {
